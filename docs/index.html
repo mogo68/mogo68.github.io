@@ -60,66 +60,6 @@ function initializeCP()
 
 </script>
 
-    <script>
-var interfaceObj, eventEmitterObj, interval;
-
-window.addEventListener( 'moduleReadyEvent', function ( e )
-{ 
-interfaceObj = e.Data;
-eventEmitterObj = interfaceObj.getEventEmitter();
-initializeEventListeners();
-});
-
-function initializeEventListeners()
-{  
-if ( interfaceObj )
-{
-  if ( eventEmitterObj )
-  {
-   eventEmitterObj.addEventListener( 'CPAPI_SLIDEENTER', function ( e )
-   {         
-    interval = setInterval( checkExists, 100, e );
-   }); 
-  }
-}
-}
-
-function checkExists( )
-{ 
-if ( cp.model.data.project_main.useWidgetVersion7 === true )
-{ 
-  var getFrame = document.getElementsByTagName( 'iframe' );
-  
-  if ( getFrame.length > 0 )
-  {
-   var myFrame = getFrame[ 0 ].id;
-   var str = myFrame.substring( myFrame.indexOf( '_' ) + 1 );
-   var frameCover = str.substring( 0, str.length - 1 );
-   
-   if ( frameCover )
-   {    
-    var elems = document.getElementsByClassName( 'cp-accessibility' );
-    
-    for( var i = 0; i < elems.length; i++ )
-    {     
-     if ( elems[ i ].getElementsByTagName( 'p' )[ 0 ].innerHTML.indexOf( 'course_background' ) !== -1 )
-     {
-      elems[ i ].getElementsByTagName( 'p' )[ 0 ].parentNode.parentNode.style.visibility = 'hidden';
-      elems[ i ].getElementsByTagName( 'p' )[ 0 ].parentNode.parentNode.style.pointerEvents = 'none';
-     }     
-    }    
-    
-    if ( document.getElementById( str.substring( 0, str.length - 1 )))
-    {
-     document.getElementById( str.substring( 0, str.length - 1 )).style.visibility = 'hidden';
-     document.getElementById( str.substring( 0, str.length - 1 )).style.pointerEvents = 'none';
-    }
-   }
-  }
-}
-}
-</script>
-
  </head>
 <body onload="onBodyLoad()">
 		<div id='initialLoading'></div>
