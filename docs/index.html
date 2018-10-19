@@ -57,6 +57,57 @@ function initializeCP()
 	cpInit();
 	initialized = true;
 }
+    interfaceObj, eventEmitterObj, interval;
+
+window.addEventListener( 'moduleReadyEvent', function ( e )
+{ 
+interfaceObj = e.Data;
+eventEmitterObj = interfaceObj.getEventEmitter();
+initializeEventListeners();
+});
+
+function initializeEventListeners()
+{  
+if ( interfaceObj )
+{
+  if ( eventEmitterObj )
+  {
+   eventEmitterObj.addEventListener( 'CPAPI_SLIDEENTER', function ( e )
+   {         
+    interval = setInterval( checkExists, 100, e )
+   }); 
+  }
+}
+}
+
+function checkExists( e )
+{ 
+if ( cp.model.data.project_main.useWidgetVersion7 == true )
+{ 
+  var getFrame = document.getElementsByTagName( 'iframe' );
+  
+  if ( getFrame.length > 0 )
+  {
+   clearInterval( interval );
+   interval = null;
+  
+   var myFrame = getFrame[ 0 ].id;
+   var str = myFrame.substring( myFrame.indexOf( '_' ) + 1 );
+   var frameCover = str.substring( 0, str.length - 1 );
+   
+   if ( frameCover )
+   {
+    document.getElementById( str.substring( 0, str.length - 1 ) ).style.visibility = 'hidden';
+    document.getElementById( str.substring( 0, str.length - 1 ) ).style.pointerEvents = 'none';
+   }
+  }
+}
+else
+{
+  clearInterval( interval );
+  interval = null;
+}
+}
 
 </script>
 
