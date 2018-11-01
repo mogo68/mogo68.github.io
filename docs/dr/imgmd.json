@@ -108,6 +108,7 @@ cp.imagesJSONCacheForLocal=true;cp.imageToJSONPathMap={
 "dr/Tab_3_Events.png": "img3.json",
 "dr/Tab_3_News.png": "img3.json",
 "dr/Tab_3_Pubs.png": "img3.json",
+"dr/Text_Caption_28.png": "img3.json",
 "dr/Title_109.png": "img3.json",
 "dr/Title_Events.png": "img3.json",
 "dr/Title_Intro1.png": "img3.json",
